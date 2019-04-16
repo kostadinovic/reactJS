@@ -8,7 +8,7 @@ const AxiosActions = {
     },
     //create a user based on the infos provided by the form
     createUser(obj){
-        return AxiosInstance.get(`/twister/CreateUser?nom=${obj.nom}&prenom=${obj.prenom}&mail=${obj.mail}&login=${obj.login}&password=${obj.password}&age=${obj.age}`);
+        return AxiosInstance.get(`/twister/CreateUser?nom=${obj.nom}&prenom=${obj.prenom}&mail=${obj.mail}&login=${obj.login}&password=${obj.password}&age=${obj.age}&password2=${obj.password2}`);
     },
 
     //just disconnect everyine
