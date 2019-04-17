@@ -10,7 +10,7 @@ class LoginPage extends Component {
             redirect: false
         };
     }
-    componentDidMount(){
+    componentDidMount() {
         localStorage.clear();
     }
     onSubmit = (event) => {
@@ -24,8 +24,8 @@ class LoginPage extends Component {
         }
 
         AxiosActions.getUsers(obj).then((results) => {
-            if (results.data.Connexion === "ok "  ||  results.data.Message === "Utilisateurs déja connecté") {
-               UserServices.setUser(results.data)
+            if (results.data.Connexion === "ok " || results.data.Message === "Utilisateurs déja connecté") {
+                UserServices.setUser(results.data)
                 this.setState({
                     redirect: true
                 })
@@ -37,13 +37,26 @@ class LoginPage extends Component {
         if (this.state.redirect)
             return <Redirect to="/feed" />
 
-        return <div>
-            <h1>Login</h1>
-            <form onSubmit={this.onSubmit}>
-                <input defaultValue="imaneB" type="text" name="login" placeholder="login" />
-                <input defaultValue="123456789" type="password" name="password" placeholder="password" />
-                <input type="submit" value="Connect" />
-            </form>
+        return <div className="jumbotron jumbotron-fluid">
+            <div className="container">
+                <h1 className="display-4">Twister</h1>
+                <p className="lead">Not the KFC one...</p>
+                <form onSubmit={this.onSubmit}>
+                    <div className="form-row align-items-center">
+                        <div className="col-sm-3 my-1">
+                            <label className="sr-only" for="login">Login</label>
+                            <input defaultValue="imaneB" id="login" className="form-control" name="login" placeholder="login" />
+                        </div>
+                        <div className="col-sm-3 my-1">
+                            <label className="sr-only" for="login">Password</label>
+                            <input className="form-control" defaultValue="123456789" type="password" name="password" placeholder="password" />
+                        </div>
+                        <div class="col-auto my-1">
+                            <button type="submit" class="btn btn-primary">Connect</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
 
     }

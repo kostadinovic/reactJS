@@ -30,14 +30,14 @@ class SignUpPage extends Component {
             prenom: prenom,
             mail: mail,
             age: age,
-            password2:password2
+            password2: password2
         }
 
         AxiosActions.createUser(obj).then((results) => {
             if (results.data.Status === "OK") {
                 AxiosActions.getUsers(obj).then((results) => {
                     if (results.data.Connexion === "ok ") {
-                       UserServices.setUser(results.data)
+                        UserServices.setUser(results.data)
                         this.setState({
                             redirect: true
                         })
@@ -52,24 +52,47 @@ class SignUpPage extends Component {
         if (this.state.redirect)
             return <Redirect to="/feed" />
         return (
-            <div>
-                <h1>Inscription</h1>
-                <form onSubmit={this.onSubmit}>
-                    <input type="text" name="nom" placeholder="nom" /><br></br>
-                    <input type="text" name="prenom" placeholder="prenom" /><br></br>
-                    <input type="text" name="login" placeholder="login" /><br></br>
-                    <input type="text" name="mail" placeholder="mail" /><br></br>
-                    <input type="text" name="age" placeholder="age" /><br></br>
-                    <input type="password" name="password" placeholder="password" /><br></br>
-                    <input type="password" name="password2" placeholder="password_verification" /><br></br>
-                    <input type="submit" value="Sign up" />
-
-                </form>
+            <div className="jumbotron jumbotron-fluid">
+                <div className="container">
+                    <h1 className="display-4">Twister</h1>
+                    <p className="lead">Not the KFC one...</p>
+                    <form onSubmit={this.onSubmit}>
+                        <div className="form-row">
+                            <div class="col-md-4 mb-3">
+                                <label for="nom">Nom</label>
+                                <input id="nom" className="form-control" type="text" name="nom" placeholder="nom" required />
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="prenom">Prénom</label>
+                                <input id="prenom" className="form-control" type="text" name="prenom" placeholder="prenom" required />
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="login">Login</label>
+                                <input type="text" className="form-control" id="login" name="login" placeholder="login" required />
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="mail">Mail</label>
+                                <input type="text" className="form-control" id="mail" name="mail" placeholder="mail" required />
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="age">Age</label>
+                                <input type="text" className="form-control" id="age" name="age" placeholder="age" required />
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="password" required />
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="password2">Password2</label>
+                                <input type="password" class="form-control" name="password2" id="password2" placeholder="confirmation_password" required />
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" type="submit">Sign up</button>
+                    </form>
+                </div>
             </div>
         );
     }
-
 }
-
 
 export default SignUpPage;

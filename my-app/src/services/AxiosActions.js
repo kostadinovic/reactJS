@@ -17,7 +17,7 @@ const AxiosActions = {
     },
     //add a message to the DB
     addMessage(obj){
-        return AxiosInstance.get(`/twister/AddMessage?login=${UserServices.getUser()["Login"]}&key=${UserServices.getUser()["Clé"]}&message=${obj.message}`);
+        return AxiosInstance.get(`/twister/AddMessage?monLogin=${UserServices.getUser()["Login"]}&key=${UserServices.getUser()["Clé"]}&message=${obj.message}`);
     },
     //list all the fiend of the connected user
     getFriends(){
@@ -37,7 +37,11 @@ const AxiosActions = {
     },
     //list all users
     listUser(){
-        return AxiosInstance.get(`twister/ListUser`);
+        return AxiosInstance.get(`twister/ListUser?login=${UserServices.getUser()["Login"]}`);
+    },
+
+    removeFriend(friendLogin){
+        return AxiosInstance.get(`twister/RemoveFriend?monLogin=${UserServices.getUser()["Login"]}&key=${UserServices.getUser()["Clé"]}&friendLogin=${friendLogin}`);
     }
     
 }
